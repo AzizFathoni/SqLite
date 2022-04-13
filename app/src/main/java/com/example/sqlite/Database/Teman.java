@@ -1,11 +1,11 @@
 package com.example.sqlite.Database;
 
 public class Teman {
-    String id;
-    String nama;
-    String telpon;
+
+    String id,nama,telpon;
 
     public Teman() {
+
     }
 
     public Teman(String id, String nama, String telpon) {
@@ -30,6 +30,7 @@ public class Teman {
     }
 
     public void setNama(String nama) {
+
         this.nama = nama;
     }
 
@@ -39,6 +40,7 @@ public class Teman {
     }
 
     public void setTelpon(String telpon) {
+
         this.telpon = telpon;
     }
 }
