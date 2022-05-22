@@ -23,14 +23,14 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-public class activity_tambah_teman extends AppCompatActivity {
+public class TambahTeman extends AppCompatActivity {
     private EditText editNama,editTelpon;
     private Button simpanBtn;
     String nm,tlp;
     int success;
 
     private static String url_insert = "http://127.0.0.1/umyTI/tambahtm.php";
-    private static final String TAG = activity_tambah_teman.class.getSimpleName();
+    private static final String TAG = TambahTeman.class.getSimpleName();
     private static final String TAG_SUCCES = "success";
 
     @Override
@@ -56,7 +56,7 @@ public class activity_tambah_teman extends AppCompatActivity {
     public void SimpanData()
     {
         if (editNama.getText().toString().equals("")||editTelpon.getText().toString().equals("")){
-            Toast.makeText(activity_tambah_teman.this, "Semua harus diisi data",Toast.LENGTH_SHORT).show();
+            Toast.makeText(TambahTeman.this, "Semua harus diisi data",Toast.LENGTH_SHORT).show();
         }
         else {
             nm = editNama.getText().toString();
@@ -71,9 +71,9 @@ public class activity_tambah_teman extends AppCompatActivity {
                         JSONObject jObj = new JSONObject(response);
                         success = jObj.getInt(TAG_SUCCES);
                         if (success == 1){
-                            Toast.makeText(activity_tambah_teman.this, "Sukses simpan data", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TambahTeman.this, "Sukses simpan data", Toast.LENGTH_SHORT).show();
                         }else{
-                            Toast.makeText(activity_tambah_teman.this,"gagal",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TambahTeman.this,"gagal",Toast.LENGTH_SHORT).show();
                         }
                     }catch (JSONException e){
                         e.printStackTrace();
@@ -83,7 +83,7 @@ public class activity_tambah_teman extends AppCompatActivity {
                 @Override
                 public void onErrorResponse(VolleyError error){
                     Log.e(TAG, "Error"+error.getMessage());
-                    Toast.makeText(activity_tambah_teman.this,"Gagal simpan data",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(TambahTeman.this,"Gagal simpan data",Toast.LENGTH_SHORT).show();
                 }
             }){
                 @Override
