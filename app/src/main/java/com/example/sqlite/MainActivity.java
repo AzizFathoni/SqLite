@@ -17,7 +17,6 @@ import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.sqlite.Adapter.TemanAdapter;
-import com.example.sqlite.Database.DBController;
 import com.example.sqlite.Database.Teman;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -26,17 +25,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private TemanAdapter adapter;
-    private ArrayList<Teman> temanArrayList;
-    DBController controller = new DBController(this);
-
+    private ArrayList<Teman> temanArrayList =  new ArrayList<>();
     private FloatingActionButton fab;
-    String id, nm, tlp;
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private static String url_select = "https://20200140059.praktikumtiumy.com/bacateman.php";
@@ -60,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), TemanBaru.class);
+                Intent intent = new Intent(getApplicationContext(), TambahTeman.class);
                 startActivity(intent);
             }
         });
@@ -73,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(JSONArray response){
                 Log.d(TAG, response.toString());
                 //Parsing json
-                for (int i=0; i<response.length();i++){
+                for (int i = 0; i < response.length();i++){
                     try {
                         JSONObject obj = response.getJSONObject(i);
                         Teman item = new Teman();
@@ -97,5 +92,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         requestQueue.add(jArr);
-        }
     }
+}

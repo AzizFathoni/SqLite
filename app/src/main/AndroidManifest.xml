@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".Adapter.AppController"
+        android:name=".App.AppController"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,14 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SqLite"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".Adapter.EditTeman"
-            android:exported="false" />
-        <activity
-            android:name=".TemanBaru"
-            android:exported="false" />
-        <activity
-            android:name=".MainActivity"
+        <activity android:name=".EditTeman"></activity>
+        <activity android:name=".TambahTeman" />
+        <activity android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,5 +24,6 @@
             </intent-filter>
         </activity>
     </application>
+
 
 </manifest>

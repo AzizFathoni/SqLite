@@ -1,4 +1,4 @@
-package com.example.sqlite.Adapter;
+package com.example.sqlite;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,10 +17,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.sqlite.Database.DBController;
-import com.example.sqlite.MainActivity;
-import com.example.sqlite.R;
-import com.google.android.material.textfield.TextInputEditText;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,7 +31,7 @@ public class EditTeman extends AppCompatActivity {
     String id, nm, tlp, namaEd, telponEd;
     int sukses;
 
-    private static String url_update = "http://10.0.2.2/PAM/updatetm.php";
+    private static String url_update = "https://20200140059.praktikumtiumy.com/updatetm.php";
     private static final String TAG = EditTeman.class.getSimpleName();
     private static final String TAG_SUCCESS = "success";
 
@@ -54,7 +50,7 @@ public class EditTeman extends AppCompatActivity {
         nm = bundle.getString("kunci2");
         tlp = bundle.getString("kunci3");
 
-        idText.setText("Id: "+ id);
+        idText.setText("Id: "+id);
         edNama.setText(nm);
         edTelpon.setText(tlp);
 
@@ -65,8 +61,8 @@ public class EditTeman extends AppCompatActivity {
             }
         });
     }
-
-    public void EditData(){
+    public void EditData()
+    {
         namaEd = edNama.getText().toString();
         telponEd = edTelpon.getText().toString();
 
@@ -76,10 +72,10 @@ public class EditTeman extends AppCompatActivity {
             public void onResponse(String response) {
                 Log.d(TAG, "Respon: " + response.toString());
                 try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    sukses = jsonObject.getInt(TAG_SUCCESS);
+                    JSONObject jobj = new JSONObject(response);
+                    sukses = jobj.getInt(TAG_SUCCESS);
                     if (sukses == 1) {
-                        Toast.makeText(EditTeman.this, "SUkses mengedit data", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(EditTeman.this, "Sukses mengedit data", Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(EditTeman.this, "gagal", Toast.LENGTH_SHORT).show();
                     }
@@ -90,28 +86,28 @@ public class EditTeman extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e(TAG, "Erros : " +error.getMessage());
-                Toast.makeText(EditTeman.this, "Gagal Edit Data",Toast.LENGTH_SHORT).show();
+                Log.e(TAG, "Error : "+error.getMessage());
+                Toast.makeText(EditTeman.this, "Gagal Edit data", Toast.LENGTH_SHORT).show();
             }
         })
         {
             @Override
             protected Map<String,String> getParams(){
-                Map<String,String> params = new HashMap<>();
-                params.put("id",id);
-                params.put("nama",namaEd);
-                params.put("telpon",telponEd);
+                Map<String,String> Params = new HashMap<>();
+                Params.put("id",id);
+                Params.put("nama",namaEd);
+                Params.put("telpon",telponEd);
 
-                return params;
+                return Params;
             }
         };
         requestQueue.add(stringReq);
         CallHomeActivity();
     }
-
-    public void CallHomeActivity(){
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        startActivity(intent);
+    public void CallHomeActivity()
+    {
+        Intent inten = new Intent(getApplicationContext(),MainActivity.class);
+        startActivity(inten);
         finish();
     }
 }
